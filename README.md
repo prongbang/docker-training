@@ -37,4 +37,4 @@ for list file in _/etc_ directory in _container-1_
 __Read log__
 >docker logs (container name| container id)
 
-> by p'ply
+__by p'ply
