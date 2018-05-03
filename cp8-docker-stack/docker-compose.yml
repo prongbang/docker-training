@@ -1,0 +1,26 @@
+version: '3'
+services:
+  dashboard:
+    image: charypar/swarm-dashboard
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    ports:
+      - '8080:8080'
+    environment:
+      PORT: 8080
+    networks:
+      - training-overlay-network
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+  httpd:
+    image: 'httpd:2.4'
+    ports:
+      - '80:80'
+    networks:
+      - training-overlay-network
+networks:
+  training-overlay-network:
+    external: true
